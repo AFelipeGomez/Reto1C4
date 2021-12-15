@@ -14,34 +14,43 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author rubyd
+ * @author Andres Gomez
  */
 @Repository
 public class UserRepository {
 
     @Autowired
-    private UserCrudRepository userCrudRepository;
-
-    public List<User> getAll() {
-        return (List<User>) userCrudRepository.findAll();
-    }
+    private UserCrudRepository crudInterface;
 
     public Optional<User> getUser(int id) {
-        return userCrudRepository.findById(id);
+        return crudInterface.findById(id);
     }
 
-    public User save(User user) {
-        return userCrudRepository.save(user);
+    public List<User> listAll() {
+        return crudInterface.findAll();
     }
 
-    public boolean existeEmail(String email) {
-        Optional<User> usuario = userCrudRepository.findByEmail(email);
+    public boolean emailExists(String email) {
+        Optional<User> usuario = crudInterface.findByEmail(email);
 
         return !usuario.isEmpty();
     }
 
-    public Optional<User> autenticarUsuario(String email, String password) {
-        return userCrudRepository.findByEmailAndPassword(email, password);
+    public Optional<User> autenticateUser(String email, String password) {
+        return crudInterface.findByEmailAndPassword(email, password);
+    }
+
+    public User create(User user) {
+        return crudInterface.save(user);
+    }
+    
+    public User update(User user) {
+        return crudInterface.save(user);
+    }
+    
+    
+    public void delete(User user) {
+        crudInterface.delete(user);
     }
 }
 
