@@ -28,6 +28,9 @@ public class ClothesService {
 	        return clothRepository.getClothe(reference);
 	    }
 
+            /*
+            Metodo para registrar prendas
+            */
 	    public Clothe create(Clothe clothe) {
 	        if (clothe.getReference() == null) {
 	            return clothe;
