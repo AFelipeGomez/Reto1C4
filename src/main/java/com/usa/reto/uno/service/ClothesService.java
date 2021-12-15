@@ -16,6 +16,10 @@ public class ClothesService {
 	 @Autowired
 	 private ClotheRepository clothRepository;
 	 
+         /**
+          * Metodo para listar todos los clothes
+          * @return 
+          */
 	 public List<Clothe> listAll() {
 	        return clothRepository.listAll();
 	    }
